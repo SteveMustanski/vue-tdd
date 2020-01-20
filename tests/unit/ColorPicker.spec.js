@@ -43,5 +43,14 @@ describe('Color model', () => {
         expect.arrayContaining([expect.stringMatching(/color-mode-\w{1,}/)])
       )
     })
+  });
+  test('sets the first mode as the selected one by default', () => {
+    const firstButton = wrapper.find('.color-mode')
+    expect(firstButton.classes()).toContain('active')
+  });
+  test('sets the color mode button as active when clicked', () => {
+    const targetButton = wrapper.findAll('.color-mode').at(2)
+    targetButton.trigger('click')
+    expect(targetButton.classes()).toContain('active')
   })
 })

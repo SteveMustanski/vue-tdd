@@ -17,7 +17,8 @@
         :key="index"
         v-for="(mode, index) in colorModes"
         class="color-mode"
-        :class="`color-mode-${mode}`"
+        :class="[{ active: index === activeMode }, `color-mode-${mode}`]"
+        @click="activeMode = index"
       >{{ mode }}</button>
     </div>
   </div>
@@ -32,6 +33,7 @@ export default {
   data() {
     return {
       activeSwatch: 0,
+      activeMode: 0,
       colorModes: ['hex', 'rgb', 'hsl']
     }
   },
