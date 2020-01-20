@@ -26,8 +26,11 @@
 </template>
 
 <script>
-import convert from 'color-convert'
 import CheckIcon from '@/assets/checkmark.svg'
+import { rgb, hex, hsl } from '@/utils/color'
+
+const modes = { rgb, hex, hsl }
+
 export default {
   components: {
     CheckIcon,
@@ -49,22 +52,11 @@ export default {
   },
   computed: {
     activeCode() {
-      return this[this.activeModeValue]
-    },
-    activeColorValue() {
-      return this.swatches[this.activeSwatch]
-    },
-    activeModeValue() {
-      return this.colorModes[this.activeMode]
-    },
-    hex() {
-      return `#${this.activeColorValue}`
-    },
-    hsl() {
-      const hslColor = convert.hex.hsl(this.activeColorValue)
-      return `${hslColor[0]}°, ${hslColor[1]}%, ${hslColor[2]}%`
+      const activeColor = this.swatches[this.activeSwatch]
+      const activeMode = this.colorModes[this.activeMode]
+      return modes[activeMode](activeColor)
     }
-  },
+  }
 };
 </script>
 

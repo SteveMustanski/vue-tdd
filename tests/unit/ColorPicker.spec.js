@@ -62,5 +62,12 @@ describe('Color code', () => {
   test('displays the code in the right mode when changing mode', () => {
     wrapper.find('.color-mode-hsl').trigger('click')
     expect(wrapper.find('.color-code').text()).toEqual('2°, 76%, 54%')
+  });
+  test('displays the code in the right color when changing color', () => {
+    wrapper
+      .findAll('.swatch')
+      .at(2)
+      .trigger('click')
+    expect(wrapper.find('.color-code').text()).toEqual('#f6993f')
   })
 })
