@@ -54,3 +54,13 @@ describe('Color model', () => {
     expect(targetButton.classes()).toContain('active')
   })
 })
+
+describe('Color code', () => {
+  test('displays the default swatch in the default mode', () => {
+    expect(wrapper.find('.color-code').text()).toEqual('#e3342f')
+  });
+  test('displays the code in the right mode when changing mode', () => {
+    wrapper.find('.color-mode-hsl').trigger('click')
+    expect(wrapper.find('.color-code').text()).toEqual('2°, 76%, 54%')
+  })
+})

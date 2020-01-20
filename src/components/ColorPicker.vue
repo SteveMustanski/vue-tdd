@@ -21,10 +21,12 @@
         @click="activeMode = index"
       >{{ mode }}</button>
     </div>
+    <div class="color-code">{{ activeCode }}</div>
   </div>
 </template>
 
 <script>
+import convert from 'color-convert'
 import CheckIcon from '@/assets/checkmark.svg'
 export default {
   components: {
@@ -44,7 +46,25 @@ export default {
         return []
       }
     }
-  }
+  },
+  computed: {
+    activeCode() {
+      return this[this.activeModeValue]
+    },
+    activeColorValue() {
+      return this.swatches[this.activeSwatch]
+    },
+    activeModeValue() {
+      return this.colorModes[this.activeMode]
+    },
+    hex() {
+      return `#${this.activeColorValue}`
+    },
+    hsl() {
+      const hslColor = convert.hex.hsl(this.activeColorValue)
+      return `${hslColor[0]}°, ${hslColor[1]}%, ${hslColor[2]}%`
+    }
+  },
 };
 </script>
 
