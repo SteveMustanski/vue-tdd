@@ -20,6 +20,17 @@ describe('ColorPicker', () => {
           `background: rgb(${convert.hex.rgb(swatch).join(', ')});`
         )
       })
+    });
+
+    test('defaults the first swatch to selected', () => {
+      const firstSwatch = wrapper.find('.swatch');
+      expect(firstSwatch.classes()).toContain('active');
+    });
+
+    test('makes the swatch active when clicked', () => {
+      const targetSwatch = wrapper.findAll('.swatch').at(2);
+      targetSwatch.trigger('click');
+      expect(targetSwatch.classes()).toContain('active');
     })
   })
 })
