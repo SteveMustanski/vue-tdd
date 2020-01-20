@@ -12,6 +12,14 @@
       <CheckIcon />
       </li>
     </ul>
+    <div class="color-modes">
+      <button
+        :key="index"
+        v-for="(mode, index) in colorModes"
+        class="color-mode"
+        :class="`color-mode-${mode}`"
+      >{{ mode }}</button>
+    </div>
   </div>
 </template>
 
@@ -23,7 +31,8 @@ export default {
   },
   data() {
     return {
-      activeSwatch: 0
+      activeSwatch: 0,
+      colorModes: ['hex', 'rgb', 'hsl']
     }
   },
   props: {
